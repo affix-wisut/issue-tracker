@@ -3,6 +3,8 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { UserModule } from './user/user.module';
+import { UserEntity } from './user/models/user.entity';
 
 @Module({
   imports: [
@@ -16,10 +18,11 @@ import { TypeOrmModule } from '@nestjs/typeorm';
       database: 'MOF_issue_tracker',
       synchronize: true,
       logging: true,
-      entities: [],
+      entities: [UserEntity],
       subscribers: [],
       migrations: [],
     }),
+    UserModule,
   ],
   controllers: [AppController],
   providers: [AppService],
